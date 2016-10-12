@@ -1,3 +1,17 @@
 <h1>
-  {{title}}
+	{{title}}
 </h1>
+<h2>
+	Esta es una práctica realizada por {{nombre}}.
+</h2>
+<h3>
+	Siguiendo su desarrollo hasta la fecha de {{fecha}}.
+</h3>
+
+<p [hidden]="oculto">
+	Esta es una prueba de mostrar y ocultar
+</p>
+
+<button (click)="ocultar(false)" [hidden]="!oculto">Mostrar</button>
+
+<button (click)="ocultar(true)" [hidden]="oculto">Ocultar</button>
