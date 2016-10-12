@@ -1,0 +1,31 @@
+// Coloque su configuración en este archivo para sobrescribir la configuración predeterminada y de usuario.
+{
+	 // Controla la familia de fuentes.
+	"editor.fontFamily": "'Liberation Mono'",
+
+    // Controla el grosor de la fuente.
+    "editor.fontWeight": "normal",
+
+	// Controla el tamaño de fuente en píxeles.
+	"editor.fontSize": 15,
+
+    // Insertar espacios al presionar TAB. Este valor se invalida en función del contenido del archivo cuando `editor.detectIndentation` está activado.
+    //A TypeScrip le gusta con espacios
+    "editor.insertSpaces": true,
+
+	// El número de espacios a los que equivale una tabulación. Este valor se invalida según el contenido del archivo cuando `editor.detectIndentation` está activado.
+	"editor.tabSize": 4,
+    
+    // Al abrir un archivo, se detectarán `editor.tabSize` y `editor.insertSpaces` en función del contenido del archivo.
+    "editor.detectIndentation": false,
+
+	// Ampliar la fuente del editor cuando se use la rueda del mouse mientras se presiona Ctrl
+    "editor.mouseWheelZoom": true,
+
+	// Habilite los datos de uso y los errores para enviarlos a Microsoft.
+    "telemetry.enableTelemetry": false,
+
+    // Habilite los informes de bloqueo para enviarlos a Microsoft.
+	// Esta opción requiere que se reinicie para surtir efecto.
+    "telemetry.enableCrashReporter": false
+}
