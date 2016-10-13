@@ -8,6 +8,8 @@
 	Siguiendo su desarrollo hasta la fecha de {{fecha}}.
 </h3>
 
+<h4>--Propiedades de las etiquetas html dinámicas--</h4>
+
 <p [hidden]="oculto">
 	Esta es una prueba de mostrar y ocultar.
 </p>
@@ -15,3 +17,11 @@
 <button (click)="ocultar(false)" [hidden]="!oculto">Mostrar</button>
 
 <button (click)="ocultar(true)" [hidden]="oculto">Ocultar</button>
+
+<br>
+
+<h4>--Valor de una etiqueta de doble dirección (M-V)--</h4>
+
+<label for="texto">{{textoprueba}}</label>
+<br>
+<input type="text" name="text" id="text" [(ngModel)]="textoprueba">

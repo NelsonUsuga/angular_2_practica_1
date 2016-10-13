@@ -11,9 +11,11 @@ export class AppComponent {
 
   nombre = 'Nelson';
 
-  fecha = '12 de Octubre de 2016';
+  fecha = '13 de Octubre de 2016';
 
   oculto = true;
+
+  textoprueba = 'Prueba de texto bidireccional';
 
   ocultar(oculto) {
     this.oculto = oculto;
