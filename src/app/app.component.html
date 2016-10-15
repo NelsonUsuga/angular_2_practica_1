@@ -20,7 +20,7 @@
 
 <br>
 
-<h4>--Valor de una etiqueta de doble dirección (M-V)--</h4>
+<h4>--Valor de doble dirección de una etiqueta input (ngModel)--</h4>
 
 <label for="texto">{{textoprueba}}</label>
 <br>
@@ -32,7 +32,7 @@
 
 <app-componente1>Componente 1</app-componente1>
 
-<h4>--Implementación de directivas (en este caso ngClass)--</h4>
+<h4>--Implementación de directivas (ngClass)--</h4>
 
 <p>
     <button
@@ -40,3 +40,18 @@
     (click)="cambiarEstado()"
     >{{textosino}}</button>
 </p>
+
+<h4>--Implementación de directivas (ngFor)--</h4>
+
+<h5>Animales</h5>
+
+<ul *ngFor="let animal of listarAnimales()">
+    <li>{{animal}}</li>
+</ul>
+
+<h4>--Implementación de directivas (ngIf)--</h4>
+
+<p (mouseover)="sobreponerMouse()" (mouseout)="retirarMouse()">Poner el cursor sobre esta linea de texto.</p>
+
+<img src="../assets/images/bosque1.jpg" width="300" height="200" *ngIf="!mostrarImagen">
+<img src="../assets/images/bosque2.jpg" width="300" height="200" *ngIf="mostrarImagen">
