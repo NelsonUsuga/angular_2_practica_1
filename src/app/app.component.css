@@ -7,3 +7,15 @@ h4
 {
     color: blue;
 }
+
+/*Ejemplo directiva ngClass*/
+.si
+{
+    background-color: green;
+}
+
+.no
+{
+    background-color: red;
+}
+/*Fin ejemplo directiva ngClass*/

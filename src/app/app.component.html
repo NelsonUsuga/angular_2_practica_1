@@ -25,3 +25,18 @@
 <label for="texto">{{textoprueba}}</label>
 <br>
 <input type="text" name="text" id="text" [(ngModel)]="textoprueba">
+
+<br>
+
+<h4>--Implementación de componentes--</h4>
+
+<app-componente1>Componente 1</app-componente1>
+
+<h4>--Implementación de directivas (en este caso ngClass)--</h4>
+
+<p>
+    <button
+    [ngClass]="{si: estado, no: !estado}"
+    (click)="cambiarEstado()"
+    >{{textosino}}</button>
+</p>
