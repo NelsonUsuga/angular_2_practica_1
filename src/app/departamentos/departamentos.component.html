@@ -1,3 +1,68 @@
-<p>
-  departamentos works!
-</p>
+<div>
+
+    <div id="formulario">
+        <div id="divdescripcion">
+            <label for="txtdescripcion">Descripcion:</label>
+            <input type="text" id="txtdescripcion" name="txtdescripcion" [(ngModel)]="descripcion" [readonly]="readonly">
+        </div>
+
+        <br>
+        
+        <div id="divcodigoiso">
+            <label for="txtcodigoiso">Código ISO:</label>
+            <input type="text" id="txtcodigoiso" name="txtcodigoiso" [(ngModel)]="codigoiso" [readonly]="readonly">
+        </div>
+
+        <br>
+        
+        <div id="divcodigonacional">
+            <label for="txtcodigonacional">Código nacional:</label>
+            <input type="text" id="txtcodigonacional" name="txtcodigonacional" [(ngModel)]="codigonacional" [readonly]="readonly">
+        </div>
+
+        <br>
+        
+        <div id="divindicativo">
+            <label for="txtindicativo">Indicativo Tél:</label>
+            <input type="text" id="txtindicativo" name="txtindicativo" [(ngModel)]="indicativo" [readonly]="readonly">
+        </div>
+
+        <br>
+        
+        <div id="divcindicadorsistema">
+            <label for="ckkindicadorsistema">Sistema:</label>
+            <input type="checkbox" id="chkindicadorsistema" name="chkindicadorsistema" [(ngModel)]="indicadorsistema" [disabled]="readonly">
+        </div>
+    </div>
+
+    <br>
+
+    <div id="barrabotones">
+        <button id="btnlistar" (click)="listarDepartamentos()">Listar</button>
+    </div>
+
+    <br>
+
+    <div id="tabladatos">
+        <table border="2">
+            <thead>
+                <th>Descripcion</th>
+                <th>Código ISO</th>
+                <th>Código nacional</th>
+                <th>Indicativo Tél.</th>
+                <th>Sistema</th>
+            </thead>
+            <tbody>
+                <tr *ngFor="let departamento of departamentos">
+                    <td>{{departamento.descripcion}}</td>
+                    <td>{{departamento.codigoiso}}</td>
+                    <td>{{departamento.codigonacional}}</td>
+                    <td>{{departamento.indicativo}}</td>
+                    <td>{{(departamento.indicadorsistema === '1') ? 'Si' : 'No'}}</td>
+                    <td><button (click)="editarDepartamento(departamento.id)">Editar</button></td>
+                    <td><button (click)="borrarDepartamento(departamento.id, departamento.indicadorsistema)">Borrar</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -5,26 +5,21 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { Componente1Component } from './componente1/componente1.component';
-
-import { DepartamentosModule } from './departamentos/departamentos.module';
-
-
-export const routes = [
-  { path: '', component: Componente1Component, pathMatch: 'full' },
-  { path: '/departamentos', module: DepartamentosModule, pathMatch: 'full' }
-];
+import { DepartamentosComponent } from './departamentos/departamentos.component';
+import { Servicio1Service } from './servicios/servicio1.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    Componente1Component
+    Componente1Component,
+    DepartamentosComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
-    DepartamentosModule
+    HttpModule
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  providers: [Servicio1Service]
 })
 export class AppModule { }
