@@ -1,9 +1,14 @@
 <div>
 
     <div id="formulario">
+        <div id="divid" hidden>
+            <label for="txtid">Id:</label>
+            <input type="text" id="txtid" name="txtid" [(ngModel)]="id">
+        </div>
+
         <div id="divdescripcion">
             <label for="txtdescripcion">Descripcion:</label>
-            <input type="text" id="txtdescripcion" name="txtdescripcion" [(ngModel)]="descripcion" [readonly]="readonly">
+            <input type="text" id="txtdescripcion" name="txtdescripcion" [(ngModel)]="descripcion" [readonly]="readonly" title="Descripción del departamento">
         </div>
 
         <br>
@@ -39,6 +44,8 @@
 
     <div id="barrabotones">
         <button id="btnlistar" (click)="listarDepartamentos()">Listar</button>
+        <button id="btnnuevo" (click)="limpiarFormulario()">Nuevo</button>
+        <button id="btngrabar" (click)="grabarDepartamento()">Grabar</button>
     </div>
 
     <br>

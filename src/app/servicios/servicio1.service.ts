@@ -10,7 +10,7 @@ export class Servicio1Service {
 
     obtenerDepartamentos() {
         let
-        urlDepartamentos = 'http://localhost:3050/krgo/backend/public/operacionbd/departamentos',
+        urlDepartamentos = 'http://192.168.0.134:3050/krgo/backend/public/operacionbd/departamentos',
         parametro = '{"encabezado":{"oid":17}}',
         header = new Headers;
         header.append('content-type', 'application/json');
@@ -20,9 +20,9 @@ export class Servicio1Service {
         return this.http.post(urlDepartamentos, parametro).map(res => res.json());*/
     }
 
-    obtenerDepartamento(id: string) {
+    obtenerDepartamento(id: number) {
         let
-        urlDepartamentos = 'http://localhost:3050/krgo/backend/public/operacionbd/departamentos',
+        urlDepartamentos = 'http://192.168.0.134:3050/krgo/backend/public/operacionbd/departamentos',
         parametro = '{"encabezado":{"oid":17}, "filtros":{"id":' + id + '}}',
         header = new Headers;
         header.append('content-type', 'application/json');
@@ -34,7 +34,7 @@ export class Servicio1Service {
 
     grabarDepartamento(datos) {
         let
-        urlDepartamentos = 'http://localhost:3050/krgo/backend/public/operacionbd/grabardepartamento',
+        urlDepartamentos = 'http://192.168.0.134:3050/krgo/backend/public/operacionbd/grabardepartamento',
         parametro = `{
             "encabezado": {
                 "oid": 17
@@ -60,9 +60,9 @@ export class Servicio1Service {
         return this.http.post(urlDepartamentos, parametro).map(res => res.json());*/
     }
 
-    borrarDepartamento(id: string) {
+    borrarDepartamento(id: number) {
         let
-        urlDepartamentos = 'http://localhost:3050/krgo/backend/public/operacionbd/borrardepartamento',
+        urlDepartamentos = 'http://192.168.0.134:3050/krgo/backend/public/operacionbd/borrardepartamento',
         parametro = '{"encabezado": {"oid": 17}, "data": [{"id":' + id + ', "accion":"d"}]}',
         header = new Headers;
         header.append('content-type', 'application/json');

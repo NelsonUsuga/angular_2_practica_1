@@ -12,8 +12,9 @@ export class DepartamentosComponent {
     departamentos: Array<string>;
 
     // Guarda el departamento específico que se va a editar
-    departamento: Array<string>;
+    departamento: any;
 
+    id: number;
     descripcion: string;
     codigoiso: string;
     codigonacional: string;
@@ -23,11 +24,14 @@ export class DepartamentosComponent {
     readonly: boolean;
 
     constructor(private servicio1: Servicio1Service) {
+        this.id = 0;
         this.descripcion = '';
         this.codigoiso = '';
         this.codigonacional = '';
         this.indicativo = '';
         this.indicadorsistema = false;
+
+        this.departamento = {};
 
         this.readonly = false;
     }
@@ -35,35 +39,63 @@ export class DepartamentosComponent {
     listarDepartamentos() {
         this.servicio1.obtenerDepartamentos().subscribe(
             dato => this.departamentos = dato.data,
-            err => alert(err)
+            err => alert(err),
+            () => this.limpiarFormulario()
         );
     }
 
-    editarDepartamento(id: string) {
+    editarDepartamento(id: number) {
         console.log('editar ' + id);
 
         this.servicio1.obtenerDepartamento(id).subscribe(
             dato => this.departamento = dato.data[0],
             err => alert(err),
-            () => this.llenarFomulario(this.departamento)
+            () => this.llenarFomulario()
         );
     }
 
-    llenarFomulario(departamento) {
+    llenarFomulario() {
         // console.log(departamento);
-        this.descripcion = departamento.descripcion;
-        this.codigoiso = departamento.codigoiso;
-        this.codigonacional = departamento.codigonacional;
-        this.indicativo = departamento.indicativo;
-        this.indicadorsistema = (departamento.indicadorsistema === '1');
+        this.id = this.departamento.id;
+        this.descripcion = this.departamento.descripcion;
+        this.codigoiso = this.departamento.codigoiso;
+        this.codigonacional = this.departamento.codigonacional;
+        this.indicativo = this.departamento.indicativo;
+        this.indicadorsistema = (this.departamento.indicadorsistema === '1');
 
         // Si el registro es del sistema los campos no se pueden editar
         this.readonly = this.indicadorsistema;
     }
 
-    borrarDepartamento(id: string, indicadorsistema: string) {
+    grabarDepartamento() {
+        if (this.indicadorsistema) {
+            console.log('No se puede grabar ' + this.id);
+            return;
+        }
+
+        if (!this.validarDepartamento()) {
+            return;
+        }
+
+        this.departamento.id = this.id;
+        this.departamento.descripcion = this.descripcion;
+        this.departamento.codigoiso = this.codigoiso;
+        this.departamento.codigonacional = this.codigonacional;
+        this.departamento.indicativo = this.indicativo;
+        this.departamento.indicadorsistema = (this.indicadorsistema) ? '1' : '0';
+
+        console.log(this.departamento);
+
+        this.servicio1.grabarDepartamento(this.departamento).subscribe(
+            dato => console.log(dato),
+            err => alert(err),
+            () => this.listarDepartamentos()
+        );
+    }
+
+    borrarDepartamento(id: number, indicadorsistema: string) {
         console.log('borrar ' + id);
-        if (indicadorsistema === '1' || id === ''  || id === '0') {
+        if (indicadorsistema === '1' || id === 0) {
             console.log('No se puede borrar ' + id);
             return;
         }
@@ -73,5 +105,33 @@ export class DepartamentosComponent {
             err => alert(err),
             () => this.listarDepartamentos()
         );
+    }
+
+    limpiarFormulario() {
+        this.constructor(this.servicio1);
+    }
+
+    validarDepartamento() {
+        let mensaje = '';
+
+        if (this.descripcion === '') {
+            mensaje = 'Falta descripcion';
+        }
+        if (this.codigoiso === '') {
+            mensaje = 'Falta código iso';
+        }
+        if (this.codigonacional === '') {
+            mensaje = 'Falta código nacional';
+        }
+        if (this.indicativo === '') {
+            mensaje = 'Falta indicativo';
+        }
+
+        if (mensaje !== '') {
+            console.log(mensaje);
+            return false;
+        }
+
+        return true;
     }
 }
