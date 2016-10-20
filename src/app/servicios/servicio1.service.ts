@@ -32,9 +32,9 @@ export class Servicio1Service {
         return this.http.post(urlDepartamentos, parametro).map(res => res.json());*/
     }
 
-    grabarDepartamento(datos) {
+    guardarDepartamento(datos) {
         let
-        urlDepartamentos = 'http://192.168.0.134:3050/krgo/backend/public/operacionbd/grabardepartamento',
+        urlDepartamentos = 'http://192.168.0.134:3050/krgo/backend/public/operacionbd/guardardepartamento',
         parametro = `{
             "encabezado": {
                 "oid": 17

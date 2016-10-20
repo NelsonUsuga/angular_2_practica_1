@@ -9,7 +9,7 @@ import { Servicio1Service } from '../servicios/servicio1.service';
 export class DepartamentosComponent {
 
     // Guarda todos los registros de departamentos
-    departamentos: Array<string>;
+    departamentos: any[];
 
     // Guarda el departamento específico que se va a editar
     departamento: any;
@@ -22,18 +22,16 @@ export class DepartamentosComponent {
     indicadorsistema: boolean;
 
     readonly: boolean;
+    valido: boolean;
+
+    mensaje: string;
 
     constructor(private servicio1: Servicio1Service) {
-        this.id = 0;
-        this.descripcion = '';
-        this.codigoiso = '';
-        this.codigonacional = '';
-        this.indicativo = '';
-        this.indicadorsistema = false;
+        this.limpiarFormulario();
 
         this.departamento = {};
 
-        this.readonly = false;
+        this.departamentos = [];
     }
 
     listarDepartamentos() {
@@ -67,9 +65,9 @@ export class DepartamentosComponent {
         this.readonly = this.indicadorsistema;
     }
 
-    grabarDepartamento() {
+    guardarDepartamento() {
         if (this.indicadorsistema) {
-            console.log('No se puede grabar ' + this.id);
+            alert('No se puede grabar porque es un registro del sistema y no se puede modificar');
             return;
         }
 
@@ -86,52 +84,51 @@ export class DepartamentosComponent {
 
         console.log(this.departamento);
 
-        this.servicio1.grabarDepartamento(this.departamento).subscribe(
+        this.servicio1.guardarDepartamento(this.departamento).subscribe(
             dato => console.log(dato),
             err => alert(err),
-            () => this.listarDepartamentos()
+            () => { alert('Guardado con éxito.'); this.listarDepartamentos(); }
         );
     }
 
     borrarDepartamento(id: number, indicadorsistema: string) {
         console.log('borrar ' + id);
         if (indicadorsistema === '1' || id === 0) {
-            console.log('No se puede borrar ' + id);
+            alert('No se puede borrar porque es un registro del sistema');
             return;
         }
 
         this.servicio1.borrarDepartamento(id).subscribe(
             dato => console.log(dato),
             err => alert(err),
-            () => this.listarDepartamentos()
+            () => { alert('Borrado con éxito.'); this.listarDepartamentos(); }
         );
     }
 
     limpiarFormulario() {
-        this.constructor(this.servicio1);
+        this.id = 0;
+        this.descripcion = '';
+        this.codigoiso = '';
+        this.codigonacional = '';
+        this.indicativo = '';
+        this.indicadorsistema = false;
+
+        this.readonly = false;
+
+        this.mensaje = '';
+        this.valido = true;
     }
 
     validarDepartamento() {
-        let mensaje = '';
 
-        if (this.descripcion === '') {
-            mensaje = 'Falta descripcion';
-        }
-        if (this.codigoiso === '') {
-            mensaje = 'Falta código iso';
-        }
-        if (this.codigonacional === '') {
-            mensaje = 'Falta código nacional';
-        }
-        if (this.indicativo === '') {
-            mensaje = 'Falta indicativo';
+        this.mensaje = '';
+        this.valido = true;
+
+        if (this.descripcion === '' || this.codigoiso === '' || this.codigonacional === '' || this.indicativo === '') {
+            this.valido = false;
+            this.mensaje = 'Faltan campos por escribir.';
         }
 
-        if (mensaje !== '') {
-            console.log(mensaje);
-            return false;
-        }
-
-        return true;
+        return this.valido;
     }
 }

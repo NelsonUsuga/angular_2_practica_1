@@ -1,0 +1,23 @@
+.msjerror {
+    color: red;
+}
+
+.inputerror {
+    border-color: red;
+}
+
+.inputerror:focus {
+    
+    border-color: red;
+    box-shadow: 0 0 5px red;
+}
+
+label {
+    width: 150px;
+    float: left;
+}
+
+h4
+{
+    color: blue;
+}
